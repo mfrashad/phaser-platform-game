@@ -1,20 +1,16 @@
 // based on http://www.lessmilk.com/tutorial/2d-platformer-phaser
 var HEIGHT = 570;
 var WIDTH = 800;
+
+debugger
 const urlParams = new URLSearchParams(window.location.search);
 const mapUrl = urlParams.get('map');
-// debugger
-// var jsonFile;
-// console.log(mapUrl)
-// fetch(mapUrl, {
-//     method: "GET",
-//     headers : { 
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json'
-//      }
-//   }).then(res => res.json())
-//     .then(jsonData => {
-//         jsonFile = JSON.parse(jsonData)
+
+var jsonFile;
+fetch(mapUrl)
+    .then(res => res.json())
+    .then(data => {
+        jsonFile = JSON.parse(data)
 
 var mainState = {
     preload: function () {
@@ -39,10 +35,9 @@ var mainState = {
         this.coins = game.add.group();
         this.enemies = game.add.group();
 
-        var mapData = data.mapdata;
-        // if(!jsonFile){
-        //     mapData =  data.mapData
-        // }
+        
+
+        var mapData = jsonFile.mapdata;
         for (var i = 0; i < mapData.length; i++) {
             for (var j = 0; j < mapData[i].length; j++) {
                 if (mapData[i][j] === 1) {
@@ -115,4 +110,4 @@ var game = new Phaser.Game(WIDTH, HEIGHT), behaviorPlugin;
 game.state.add('main', mainState);
 game.state.start('main');
 
-// });
+});
