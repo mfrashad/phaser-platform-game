@@ -2,6 +2,16 @@
 var HEIGHT = 570;
 var WIDTH = 800;
 
+debugger
+const urlParams = new URLSearchParams(window.location.search);
+const mapUrl = urlParams.get('map');
+
+var jsonFile;
+fetch(mapUrl)
+    .then(res => res.json())
+    .then(data => {
+        jsonFile = JSON.parse(data)
+
 var mainState = {
     preload: function () {
         game.load.crossOrigin = 'anonymous';
@@ -27,7 +37,7 @@ var mainState = {
 
         
 
-        var mapData = data.mapdata;
+        var mapData = jsonFile.mapdata;
         for (var i = 0; i < mapData.length; i++) {
             for (var j = 0; j < mapData[i].length; j++) {
                 if (mapData[i][j] === 1) {
@@ -99,3 +109,5 @@ var mainState = {
 var game = new Phaser.Game(WIDTH, HEIGHT), behaviorPlugin;
 game.state.add('main', mainState);
 game.state.start('main');
+
+});
