@@ -17,7 +17,7 @@ var Platformer = {
         var gravity = options.gravity;
         var controls = options.controls;
 
-        if (gravity > 0) {
+        if (gravity > 0 && object.body) {
             object.body.gravity.y = gravity;
         }
 
@@ -27,14 +27,11 @@ var Platformer = {
             controls = [controls]
         }
 
-        for(var i = 0; i < controls.length; ++i) {
-            if (options.controls[i] === DEFAULT_CONTROLS) {
-                options._cursor_arrows = object.game.input.keyboard.createCursorKeys();
-            }
-        }
     },
 
     preUpdate: function (object, options) {
+        if(!object || !object.game) return;
+    
         //debugger
         var velocity = options.velocity;
         var center = object.game.world.centerX;
@@ -55,20 +52,20 @@ var Platformer = {
         } else {
             object.body.velocity.x = 0;
         }
-        var cursor = options._cursor_arrows;
+        // var cursor = options._cursor_arrows;
         
 
-        // if (cursor.left.isDown) {
-        //     object.body.velocity.x = -velocity;
-        // } else if (cursor.right.isDown) {
-        //     object.body.velocity.x = velocity;
-        // } else {
-        //     object.body.velocity.x = 0;
-        // }
+        // // if (cursor.left.isDown) {
+        // //     object.body.velocity.x = -velocity;
+        // // } else if (cursor.right.isDown) {
+        // //     object.body.velocity.x = velocity;
+        // // } else {
+        // //     object.body.velocity.x = 0;
+        // // }
 
-        if (cursor.up.isDown && object.body.touching.down) {
-            object.body.velocity.y = -options.jumpStrength;
-        }
+        // if (cursor.up.isDown && object.body.touching.down) {
+        //     object.body.velocity.y = -options.jumpStrength;
+        // }
     }
 };
 

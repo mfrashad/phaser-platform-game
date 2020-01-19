@@ -43,6 +43,7 @@ var mainState = {
                 } else if (mapData[i][j] === 6) {
                     if(!this.player){
                         this.player = game.add.sprite(130 + j, i, 'player');
+                        this.player.startPoint = { x: 130 + j, y: i};
                     }
                 }
             }
@@ -64,20 +65,7 @@ var mainState = {
         // this.rightButton.alpha = 100;
         this.rightButton.width = 80;
         this.rightButton.height = 80;
-        this.tinth = '#CCC';
-        // // game.input.on('pointerdown', function(pointer){
-        // //     var sx = pointer.x;
-        // //     var world_center = 400;
-        // //     if (sx < world_center) {
-        // //         this.plyaer.body.velocity.x = -velocity;
-        // //     } else if (sx > world_center) {
-        // //         this.plyaer.body.velocity.x = velocity;
-        // //     } else {
-        // //         this.plyaer.body.velocity.x = 0;
-        // //     }
-        // // })
-
-        
+        this.rightButton.tint = '#CCC';
 
         // collision handlers
         this.player.behaviors.set('collide-on-wall', Phaser.Behavior.CollisionHandler, {
@@ -101,8 +89,10 @@ var mainState = {
         coin.kill();
     },
 
-    restart: function () {
-        game.state.start('main');
+    restart: function (player) {
+        player.body.x = player.startPoint.x
+        player.body.y = player.startPoint.y
+        
     }
 };
 
