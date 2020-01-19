@@ -1,4 +1,7 @@
 var DEFAULT_CONTROLS = 0; // arrows
+var HEIGHT = 570;
+var WIDTH = 800;
+var BUTTON = { x1: WIDTH - 200, y1: HEIGHT - 100, x2: WIDTH - 100, y2: HEIGHT - 50}
 
 var Platformer = {
 
@@ -32,16 +35,36 @@ var Platformer = {
     },
 
     preUpdate: function (object, options) {
-        var cursor = options._cursor_arrows;
+        //debugger
         var velocity = options.velocity;
-
-        if (cursor.left.isDown) {
-            object.body.velocity.x = -velocity;
-        } else if (cursor.right.isDown) {
-            object.body.velocity.x = velocity;
+        var center = object.game.world.centerX;
+        var pointer = object.game.input.activePointer;
+        var px = pointer.worldX;
+        var py = pointer.worldY;
+        if(pointer.isDown){
+            if(px > BUTTON.x1 && px <  BUTTON.x2 && py > BUTTON.y1 && py < BUTTON.y2){
+                if(object.body.touching.down) object.body.velocity.y = -options.jumpStrength;
+            }
+            else if (px < center) {
+                object.body.velocity.x = -velocity;
+                
+            } else if (px > center) {
+                object.body.velocity.x = velocity;
+                
+            }
         } else {
             object.body.velocity.x = 0;
         }
+        var cursor = options._cursor_arrows;
+        
+
+        // if (cursor.left.isDown) {
+        //     object.body.velocity.x = -velocity;
+        // } else if (cursor.right.isDown) {
+        //     object.body.velocity.x = velocity;
+        // } else {
+        //     object.body.velocity.x = 0;
+        // }
 
         if (cursor.up.isDown && object.body.touching.down) {
             object.body.velocity.y = -options.jumpStrength;

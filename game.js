@@ -24,6 +24,8 @@ var mainState = {
         this.coins = game.add.group();
         this.enemies = game.add.group();
 
+        
+
         var mapData = data.mapdata;
         for (var i = 0; i < mapData.length; i++) {
             for (var j = 0; j < mapData[i].length; j++) {
@@ -52,6 +54,29 @@ var mainState = {
             jumpStrength: 450,
             gravity: 1300
         });
+
+
+        this.rightButton = game.add.button(WIDTH-200, HEIGHT - 100, 'button', function(){
+            console.log('')
+        }, this, 2, 1, 0);
+
+        // this.rightButton.alpha = 100;
+        this.rightButton.width = 100;
+        this.rightButton.height = 50;
+        this.tinth = '#CCC';
+        // // game.input.on('pointerdown', function(pointer){
+        // //     var sx = pointer.x;
+        // //     var world_center = 400;
+        // //     if (sx < world_center) {
+        // //         this.plyaer.body.velocity.x = -velocity;
+        // //     } else if (sx > world_center) {
+        // //         this.plyaer.body.velocity.x = velocity;
+        // //     } else {
+        // //         this.plyaer.body.velocity.x = 0;
+        // //     }
+        // // })
+
+        
 
         // collision handlers
         this.player.behaviors.set('collide-on-wall', Phaser.Behavior.CollisionHandler, {
