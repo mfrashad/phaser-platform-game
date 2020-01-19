@@ -1,8 +1,6 @@
 // based on http://www.lessmilk.com/tutorial/2d-platformer-phaser
 var HEIGHT = 570;
 var WIDTH = 800;
-
-debugger
 const urlParams = new URLSearchParams(window.location.search);
 const mapUrl = urlParams.get('map');
 
@@ -35,9 +33,14 @@ var mainState = {
         this.coins = game.add.group();
         this.enemies = game.add.group();
 
-        
+        if(!jsonFile){
+
+        }
 
         var mapData = jsonFile.mapdata;
+        if(!jsonFile){
+            mapData =  data.mapData
+        }
         for (var i = 0; i < mapData.length; i++) {
             for (var j = 0; j < mapData[i].length; j++) {
                 if (mapData[i][j] === 1) {
