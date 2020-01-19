@@ -53,8 +53,8 @@ var mainState = {
                     this.enemies.add(enemy);
                 } else if (mapData[i][j] === 6) {
                     if(!this.player){
-                        this.player = game.add.sprite(130 + j, i, 'player');
-                        this.player.startPoint = { x: 130 + j, y: i};
+                        this.player = game.add.sprite(j, i, 'player');
+                        this.player.startPoint = { x: j, y: i};
                     }
                 }
             }
