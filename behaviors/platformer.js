@@ -1,7 +1,7 @@
 var DEFAULT_CONTROLS = 0; // arrows
 var HEIGHT = 570;
 var WIDTH = 800;
-var BUTTON = { x1: WIDTH - 200, y1: HEIGHT - 100, x2: WIDTH - 100, y2: HEIGHT - 50}
+var BUTTON = { x1: WIDTH - 200, y1: HEIGHT - 150, x2: WIDTH - 120, y2: HEIGHT - 70}
 
 var Platformer = {
 

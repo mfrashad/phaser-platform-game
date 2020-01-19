@@ -7,6 +7,7 @@ var mainState = {
         game.load.crossOrigin = 'anonymous';
 
         game.load.image('player', 'assets/player-big.png');
+        game.load.image('button', 'assets/jump.png');
         game.load.image('wall', 'assets/wall.png');
         game.load.image('coin', 'assets/coin.png');
         game.load.image('enemy', 'assets/enemy.png');
@@ -56,13 +57,13 @@ var mainState = {
         });
 
 
-        this.rightButton = game.add.button(WIDTH-200, HEIGHT - 100, 'button', function(){
+        this.rightButton = game.add.button(WIDTH-200, HEIGHT - 150, 'button', function(){
             console.log('')
         }, this, 2, 1, 0);
 
         // this.rightButton.alpha = 100;
-        this.rightButton.width = 100;
-        this.rightButton.height = 50;
+        this.rightButton.width = 80;
+        this.rightButton.height = 80;
         this.tinth = '#CCC';
         // // game.input.on('pointerdown', function(pointer){
         // //     var sx = pointer.x;
