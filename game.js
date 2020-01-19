@@ -3,12 +3,12 @@ var HEIGHT = 570;
 var WIDTH = 800;
 const urlParams = new URLSearchParams(window.location.search);
 const mapUrl = urlParams.get('map');
-
-var jsonFile;
-fetch(mapUrl)
-    .then(res => res.json())
-    .then(jsonData => {
-        jsonFile = JSON.parse(jsonData)
+debugger
+// var jsonFile;
+// fetch(mapUrl)
+//     .then(res => res.json())
+//     .then(jsonData => {
+//         jsonFile = JSON.parse(jsonData)
 
 var mainState = {
     preload: function () {
@@ -33,14 +33,10 @@ var mainState = {
         this.coins = game.add.group();
         this.enemies = game.add.group();
 
-        if(!jsonFile){
-
-        }
-
-        var mapData = jsonFile.mapdata;
-        if(!jsonFile){
-            mapData =  data.mapData
-        }
+        var mapData = data.mapdata;
+        // if(!jsonFile){
+        //     mapData =  data.mapData
+        // }
         for (var i = 0; i < mapData.length; i++) {
             for (var j = 0; j < mapData[i].length; j++) {
                 if (mapData[i][j] === 1) {
@@ -113,4 +109,4 @@ var game = new Phaser.Game(WIDTH, HEIGHT), behaviorPlugin;
 game.state.add('main', mainState);
 game.state.start('main');
 
-});
+// });
