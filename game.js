@@ -4,11 +4,17 @@ var WIDTH = 800;
 const urlParams = new URLSearchParams(window.location.search);
 const mapUrl = urlParams.get('map');
 debugger
-// var jsonFile;
-// fetch(mapUrl)
-//     .then(res => res.json())
-//     .then(jsonData => {
-//         jsonFile = JSON.parse(jsonData)
+var jsonFile;
+console.log(mapUrl)
+fetch(mapUrl, {
+    method: "GET",
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }
+  }).then(res => res.json())
+    .then(jsonData => {
+        jsonFile = JSON.parse(jsonData)
 
 var mainState = {
     preload: function () {
@@ -109,4 +115,4 @@ var game = new Phaser.Game(WIDTH, HEIGHT), behaviorPlugin;
 game.state.add('main', mainState);
 game.state.start('main');
 
-// });
+});
