@@ -7,8 +7,8 @@ const mapUrl = urlParams.get('map');
 var jsonFile;
 fetch(mapUrl)
     .then(res => res.json())
-    .then(data => {
-        jsonFile = JSON.parse(data)
+    .then(jsonData => {
+        jsonFile = JSON.parse(jsonData)
 
 var mainState = {
     preload: function () {
