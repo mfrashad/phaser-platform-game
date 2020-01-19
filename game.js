@@ -10,7 +10,8 @@ var jsonFile;
 fetch(mapUrl)
     .then(res => res.json())
     .then(data => {
-        jsonFile = JSON.parse(data)
+        console.log(data)
+        jsonFile = data
 
 var mainState = {
     preload: function () {
